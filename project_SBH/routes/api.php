@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BakeryController;
+<<<<<<< HEAD
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\AdminController;
+=======
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+<<<<<<< HEAD
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -51,3 +55,17 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
     Route::post('/register-bakery-owner', [AuthController::class, 'registerBakeryOwner']);
 });
 
+=======
+Route::get('/bakeries', [BakeryController::class, 'index']); // عرض وفلترة المخابز
+Route::get('/bakeries/{bakery}/products', [BakeryController::class, 'showProducts']); // عرض منتجات مخبز معين
+
+// مسارات تتطلب مصادقة (لتسجيل الخروج، أو أي وظيفة محمية أخرى)
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/orders', [OrderController::class, 'store']); // لإنشاء طلب جديد
+    Route::get('/orders', [OrderController::class, 'index']); // لعرض الطلبات (واجهة My Orders)
+    Route::put('/orders/{order}/cancel', [OrderController::class, 'cancel']); // لإلغاء الطلب
+
+   
+});
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60

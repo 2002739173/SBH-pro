@@ -21,8 +21,11 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
     ];
 
     /**
@@ -42,7 +45,11 @@ class Kernel extends HttpKernel
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+<<<<<<< HEAD
             \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
+=======
+            \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -66,8 +73,11 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+<<<<<<< HEAD
         'bakery.owner' => \App\Http\Middleware\EnsureUserIsBakeryOwner::class,
         'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class, // <--- الجديد
         'customer' => \App\Http\Middleware\EnsureUserIsCustomer::class,
+=======
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
     ];
 }

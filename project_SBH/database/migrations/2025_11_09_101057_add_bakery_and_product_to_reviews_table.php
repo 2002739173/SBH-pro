@@ -12,9 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reviews', function (Blueprint $table) {
+<<<<<<< HEAD
             
             $table->foreignId('bakery_id')->nullable()->after('user_id')->constrained()->onDelete('cascade');
             
+=======
+            // إضافة حقل اختياري لربط التقييم بمخبز
+            $table->foreignId('bakery_id')->nullable()->after('user_id')->constrained()->onDelete('cascade');
+            // إضافة حقل اختياري لربط التقييم بمنتج (يمكن استخدامه لاحقًا)
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
             $table->foreignId('product_id')->nullable()->after('bakery_id')->constrained()->onDelete('cascade');
         });
     }

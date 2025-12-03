@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('phone_number')->unique()->nullable(); 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+<<<<<<< HEAD
             $table->decimal('latitude', 10, 8)->nullable(); 
             $table->decimal('longitude', 11, 8)->nullable(); 
+=======
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
             $table->rememberToken();
             $table->timestamps();
         });

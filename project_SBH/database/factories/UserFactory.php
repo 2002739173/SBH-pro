@@ -23,6 +23,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+<<<<<<< HEAD
         $minLat = 33.50; 
         $maxLat = 33.60; 
         $minLon = 36.20; 
@@ -46,6 +47,13 @@ class UserFactory extends Factory
             // 6. longitude
             'longitude' => fake()->randomFloat(8, $minLon, $maxLon),
             
+=======
+        return [
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => now(),
+            'password' => static::$password ??= Hash::make('password'),
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
             'remember_token' => Str::random(10),
         ];
     }

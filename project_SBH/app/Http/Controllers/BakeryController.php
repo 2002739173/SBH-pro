@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bakery;
+<<<<<<< HEAD
 use App\Models\Product;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -20,10 +21,31 @@ class BakeryController extends Controller
                 ->orWhere('description', 'like', $searchTerm);
         }
 
+=======
+
+class BakeryController extends Controller
+{
+    /**
+     * جلب جميع المخابز مع دعم البحث والفلترة (واجهة All Bakeries).
+     */
+    public function index(Request $request)
+    {
+        $query = Bakery::query();
+
+        // 1. البحث (search bakeries...)
+        if ($request->filled('search')) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where('name', 'like', $searchTerm)
+                  ->orWhere('description', 'like', $searchTerm);
+        }
+
+        // 2. الفلترة حسب المدينة (Write City location...)
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
         if ($request->filled('city')) {
             $query->where('city', $request->city);
         }
 
+<<<<<<< HEAD
 
         if ($request->filled('price_sort') && $request->price_sort !== 'None') {
 
@@ -34,6 +56,21 @@ class BakeryController extends Controller
 
         $recommended = $query->clone()->where('rating_average', '>=', 4.5)->limit(3)->get();
         $allBakeries = $query->paginate(6);
+=======
+        // 3. الفلترة حسب السعر (Price filter - نفترض أنها فلترة للمخابز الأكثر تقييما أو الأعلى سعرا)
+        if ($request->filled('price_sort') && $request->price_sort !== 'None') {
+            // نفترض أن price_sort يمكن أن يكون 'high_rating'
+            if ($request->price_sort === 'high_rating') {
+                $query->orderBy('rating_average', 'desc');
+            }
+            // يمكن إضافة منطق فلترة حسب الأسعار المتوسطة للمنتجات لاحقًا.
+        }
+
+        // يمكن فصل المخابز الموصى بها (Recommended) بناءً على منطق محدد
+        // هنا، سنعتبر أي مخابز بتقييم عالٍ (فوق 4.5) هي موصى بها كمثال
+        $recommended = $query->clone()->where('rating_average', '>=', 4.5)->limit(3)->get();
+        $allBakeries = $query->paginate(6); // 6 مخابز في الصفحة الواحدة كما يظهر في الواجهة
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
 
         return response()->json([
             'recommended_bakeries' => $recommended,
@@ -41,8 +78,17 @@ class BakeryController extends Controller
         ]);
     }
 
+<<<<<<< HEAD
     public function showProducts(Bakery $bakery)
     {
+=======
+    /**
+     * عرض منتجات مخبز معين (واجهة Ahmad Bakeries Products).
+     */
+    public function showProducts(Bakery $bakery)
+    {
+        // جلب المنتجات المرتبطة بالمخبز
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
         $products = $bakery->products()->paginate(6);
 
         return response()->json([
@@ -50,6 +96,7 @@ class BakeryController extends Controller
             'products' => $products
         ]);
     }
+<<<<<<< HEAD
 
     private function getBakeryId(Request $request)
     {
@@ -189,4 +236,6 @@ class BakeryController extends Controller
 
         return response()->json(['message' => 'Product deleted successfully.'], 200);
     }
+=======
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
 }

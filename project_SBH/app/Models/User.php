@@ -22,10 +22,13 @@ class User extends Authenticatable
         'phone_number',
         'email',
         'password',
+<<<<<<< HEAD
         'latitude', 
         'longitude',
         'role', 
         'bakery_id', 
+=======
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
     ];
 
     /**
@@ -50,6 +53,7 @@ class User extends Authenticatable
 
      public function orders()
     {
+<<<<<<< HEAD
         return $this->hasMany(Order::class);
     }
 
@@ -63,4 +67,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id');
     }
 
+=======
+        // يجب استيراد نموذج Order في أعلى الملف إذا لم يكن موجودًا
+        return $this->hasMany(Order::class);
+    }
+
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
 }

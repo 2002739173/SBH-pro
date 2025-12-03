@@ -14,9 +14,15 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+<<<<<<< HEAD
             $table->foreignId('order_id')->nullable()->constrained()->onDelete('cascade'); 
             $table->integer('rating')->unsigned(); 
             $table->text('notes')->nullable(); 
+=======
+            $table->foreignId('order_id')->nullable()->constrained()->onDelete('cascade'); // يمكن ربط التقييم بطلب معين
+            $table->integer('rating')->unsigned(); // 1 to 5 stars
+            $table->text('notes')->nullable(); // ملاحظات التقييم
+>>>>>>> 051ecec328ba2554ab488449953a539178d14f60
             $table->timestamps();
         });
     }
